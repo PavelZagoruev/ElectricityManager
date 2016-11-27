@@ -1,0 +1,816 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище КПModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Арендатор">
+          <Key>
+            <PropertyRef Name="IDАрендатор" />
+          </Key>
+          <Property Name="Фамилия" Type="varchar" MaxLength="20" />
+          <Property Name="Имя" Type="varchar" MaxLength="20" />
+          <Property Name="Отчество" Type="varchar" MaxLength="20" />
+          <Property Name="ПаспортныеДанные" Type="varchar" MaxLength="20" />
+          <Property Name="IDДоговор" Type="int" />
+          <Property Name="IDАрендатор" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Арендодатель">
+          <Key>
+            <PropertyRef Name="IDАрендодатель" />
+          </Key>
+          <Property Name="Наименование" Type="varchar" MaxLength="20" />
+          <Property Name="ПочтовыеДанные" Type="varchar" MaxLength="20" />
+          <Property Name="IDПомещения" Type="int" />
+          <Property Name="IDЗдания" Type="int" />
+          <Property Name="IDСотрудника" Type="int" />
+          <Property Name="IDДоговор" Type="int" />
+          <Property Name="IDАрендодатель" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Договор">
+          <Key>
+            <PropertyRef Name="IDДоговор" />
+          </Key>
+          <Property Name="IDДоговор" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ДатаВъезда" Type="datetime" />
+          <Property Name="ДатаВыеда" Type="datetime" />
+          <Property Name="ИнформацияПоПомещению" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Должности">
+          <Key>
+            <PropertyRef Name="IDДолжности" />
+          </Key>
+          <Property Name="IDДолжности" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="НаименованиеДолжности" Type="varchar" MaxLength="18" />
+          <Property Name="Оклад" Type="money" />
+          <Property Name="Требования" Type="varchar" MaxLength="18" />
+        </EntityType>
+        <EntityType Name="Здания">
+          <Key>
+            <PropertyRef Name="IDЗдания" />
+          </Key>
+          <Property Name="Наименование" Type="varchar" MaxLength="20" />
+          <Property Name="Этажность" Type="int" />
+          <Property Name="ПочтовыеДанные" Type="varchar" MaxLength="20" />
+          <Property Name="НомерПомещения" Type="int" />
+          <Property Name="IDЗдания" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ОбщиеПомещения">
+          <Key>
+            <PropertyRef Name="IDОбщПомещения" />
+          </Key>
+          <Property Name="НаименованиеКоридоры" Type="varchar" MaxLength="20" />
+          <Property Name="Туалеты" Type="int" />
+          <Property Name="Этаж" Type="int" />
+          <Property Name="IDЗдания" Type="int" />
+          <Property Name="IDОбщПомещения" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ПоказанияСчётчика">
+          <Key>
+            <PropertyRef Name="IDСчётчика" />
+          </Key>
+          <Property Name="Номер" Type="int" />
+          <Property Name="Дата" Type="datetime" />
+          <Property Name="Арендодатель" Type="varchar" MaxLength="20" />
+          <Property Name="Месяц" Type="varchar" MaxLength="20" />
+          <Property Name="Год" Type="int" />
+          <Property Name="Сумма" Type="int" />
+          <Property Name="IDЭлектрооборудование" Type="int" />
+          <Property Name="IDСчётчика" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDСотрудника" Type="int" />
+        </EntityType>
+        <EntityType Name="Помещения">
+          <Key>
+            <PropertyRef Name="IDПомещения" />
+          </Key>
+          <Property Name="IDПомещения" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Площадь" Type="int" />
+          <Property Name="Этаж" Type="int" />
+          <Property Name="Номер" Type="int" />
+          <Property Name="IDЗдания" Type="int" />
+          <Property Name="IDАрендодатель" Type="int" />
+        </EntityType>
+        <EntityType Name="ПослужнойСписок">
+          <Key>
+            <PropertyRef Name="IDПослужногоСписка" />
+          </Key>
+          <Property Name="ДатаЗанятияДолжности" Type="datetime" />
+          <Property Name="КраткаяХарактеристика" Type="varchar" MaxLength="40" />
+          <Property Name="IDПослужногоСписка" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDДолжности" Type="int" />
+          <Property Name="IDСотрудника" Type="int" />
+        </EntityType>
+        <EntityType Name="Сотрудники">
+          <Key>
+            <PropertyRef Name="IDСотрудника" />
+          </Key>
+          <Property Name="Фамилия" Type="varchar" MaxLength="20" />
+          <Property Name="Имя" Type="varchar" MaxLength="20" />
+          <Property Name="Отчество" Type="varchar" MaxLength="20" />
+          <Property Name="Фото" Type="varchar" MaxLength="20" />
+          <Property Name="ДатаРождения" Type="datetime" />
+          <Property Name="Пол" Type="varchar" MaxLength="20" />
+          <Property Name="Адрес" Type="varchar" MaxLength="20" />
+          <Property Name="Телефон" Type="int" />
+          <Property Name="Образование" Type="varchar" MaxLength="20" />
+          <Property Name="IDСотрудника" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ПаспортныеДанные" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Электрооборудование">
+          <Key>
+            <PropertyRef Name="IDЭлектрооборудование" />
+          </Key>
+          <Property Name="Наименование" Type="varchar" MaxLength="20" />
+          <Property Name="Количество" Type="int" />
+          <Property Name="СуточноеВремяРаботы" Type="int" />
+          <Property Name="IDЭлектрооборудование" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <Association Name="R_1">
+          <End Role="Здания" Type="Self.Здания" Multiplicity="0..1" />
+          <End Role="Помещения" Type="Self.Помещения" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Здания">
+              <PropertyRef Name="IDЗдания" />
+            </Principal>
+            <Dependent Role="Помещения">
+              <PropertyRef Name="IDЗдания" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_13">
+          <End Role="Арендодатель" Type="Self.Арендодатель" Multiplicity="0..1" />
+          <End Role="Помещения" Type="Self.Помещения" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Арендодатель">
+              <PropertyRef Name="IDАрендодатель" />
+            </Principal>
+            <Dependent Role="Помещения">
+              <PropertyRef Name="IDАрендодатель" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_15">
+          <End Role="Договор" Type="Self.Договор" Multiplicity="0..1" />
+          <End Role="Арендатор" Type="Self.Арендатор" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Договор">
+              <PropertyRef Name="IDДоговор" />
+            </Principal>
+            <Dependent Role="Арендатор">
+              <PropertyRef Name="IDДоговор" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_16">
+          <End Role="Договор" Type="Self.Договор" Multiplicity="0..1" />
+          <End Role="Арендодатель" Type="Self.Арендодатель" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Договор">
+              <PropertyRef Name="IDДоговор" />
+            </Principal>
+            <Dependent Role="Арендодатель">
+              <PropertyRef Name="IDДоговор" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_18">
+          <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="0..1" />
+          <End Role="ПоказанияСчётчика" Type="Self.ПоказанияСчётчика" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сотрудники">
+              <PropertyRef Name="IDСотрудника" />
+            </Principal>
+            <Dependent Role="ПоказанияСчётчика">
+              <PropertyRef Name="IDСотрудника" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_19">
+          <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="0..1" />
+          <End Role="ПослужнойСписок" Type="Self.ПослужнойСписок" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сотрудники">
+              <PropertyRef Name="IDСотрудника" />
+            </Principal>
+            <Dependent Role="ПослужнойСписок">
+              <PropertyRef Name="IDСотрудника" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_2">
+          <End Role="Здания" Type="Self.Здания" Multiplicity="0..1" />
+          <End Role="ОбщиеПомещения" Type="Self.ОбщиеПомещения" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Здания">
+              <PropertyRef Name="IDЗдания" />
+            </Principal>
+            <Dependent Role="ОбщиеПомещения">
+              <PropertyRef Name="IDЗдания" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_21">
+          <End Role="Должности" Type="Self.Должности" Multiplicity="0..1" />
+          <End Role="ПослужнойСписок" Type="Self.ПослужнойСписок" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Должности">
+              <PropertyRef Name="IDДолжности" />
+            </Principal>
+            <Dependent Role="ПослужнойСписок">
+              <PropertyRef Name="IDДолжности" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_4">
+          <End Role="Здания" Type="Self.Здания" Multiplicity="0..1" />
+          <End Role="Арендодатель" Type="Self.Арендодатель" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Здания">
+              <PropertyRef Name="IDЗдания" />
+            </Principal>
+            <Dependent Role="Арендодатель">
+              <PropertyRef Name="IDЗдания" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_7">
+          <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="0..1" />
+          <End Role="Арендодатель" Type="Self.Арендодатель" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сотрудники">
+              <PropertyRef Name="IDСотрудника" />
+            </Principal>
+            <Dependent Role="Арендодатель">
+              <PropertyRef Name="IDСотрудника" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_8">
+          <End Role="Электрооборудование" Type="Self.Электрооборудование" Multiplicity="0..1" />
+          <End Role="ПоказанияСчётчика" Type="Self.ПоказанияСчётчика" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Электрооборудование">
+              <PropertyRef Name="IDЭлектрооборудование" />
+            </Principal>
+            <Dependent Role="ПоказанияСчётчика">
+              <PropertyRef Name="IDЭлектрооборудование" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище КПModelContainer">
+          <EntitySet Name="Арендатор" EntityType="Self.Арендатор" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Арендодатель" EntityType="Self.Арендодатель" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Договор" EntityType="Self.Договор" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Должности" EntityType="Self.Должности" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Здания" EntityType="Self.Здания" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ОбщиеПомещения" EntityType="Self.ОбщиеПомещения" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ПоказанияСчётчика" EntityType="Self.ПоказанияСчётчика" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Помещения" EntityType="Self.Помещения" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ПослужнойСписок" EntityType="Self.ПослужнойСписок" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Сотрудники" EntityType="Self.Сотрудники" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Электрооборудование" EntityType="Self.Электрооборудование" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="R_1" Association="Self.R_1">
+            <End Role="Здания" EntitySet="Здания" />
+            <End Role="Помещения" EntitySet="Помещения" />
+          </AssociationSet>
+          <AssociationSet Name="R_13" Association="Self.R_13">
+            <End Role="Арендодатель" EntitySet="Арендодатель" />
+            <End Role="Помещения" EntitySet="Помещения" />
+          </AssociationSet>
+          <AssociationSet Name="R_15" Association="Self.R_15">
+            <End Role="Договор" EntitySet="Договор" />
+            <End Role="Арендатор" EntitySet="Арендатор" />
+          </AssociationSet>
+          <AssociationSet Name="R_16" Association="Self.R_16">
+            <End Role="Договор" EntitySet="Договор" />
+            <End Role="Арендодатель" EntitySet="Арендодатель" />
+          </AssociationSet>
+          <AssociationSet Name="R_18" Association="Self.R_18">
+            <End Role="Сотрудники" EntitySet="Сотрудники" />
+            <End Role="ПоказанияСчётчика" EntitySet="ПоказанияСчётчика" />
+          </AssociationSet>
+          <AssociationSet Name="R_19" Association="Self.R_19">
+            <End Role="Сотрудники" EntitySet="Сотрудники" />
+            <End Role="ПослужнойСписок" EntitySet="ПослужнойСписок" />
+          </AssociationSet>
+          <AssociationSet Name="R_2" Association="Self.R_2">
+            <End Role="Здания" EntitySet="Здания" />
+            <End Role="ОбщиеПомещения" EntitySet="ОбщиеПомещения" />
+          </AssociationSet>
+          <AssociationSet Name="R_21" Association="Self.R_21">
+            <End Role="Должности" EntitySet="Должности" />
+            <End Role="ПослужнойСписок" EntitySet="ПослужнойСписок" />
+          </AssociationSet>
+          <AssociationSet Name="R_4" Association="Self.R_4">
+            <End Role="Здания" EntitySet="Здания" />
+            <End Role="Арендодатель" EntitySet="Арендодатель" />
+          </AssociationSet>
+          <AssociationSet Name="R_7" Association="Self.R_7">
+            <End Role="Сотрудники" EntitySet="Сотрудники" />
+            <End Role="Арендодатель" EntitySet="Арендодатель" />
+          </AssociationSet>
+          <AssociationSet Name="R_8" Association="Self.R_8">
+            <End Role="Электрооборудование" EntitySet="Электрооборудование" />
+            <End Role="ПоказанияСчётчика" EntitySet="ПоказанияСчётчика" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="КПModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Арендатор">
+          <Key>
+            <PropertyRef Name="IDАрендатор" />
+          </Key>
+          <Property Name="Фамилия" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Имя" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Отчество" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ПаспортныеДанные" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IDДоговор" Type="Int32" />
+          <Property Name="IDАрендатор" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Договор" Relationship="Self.R_15" FromRole="Арендатор" ToRole="Договор" />
+        </EntityType>
+        <EntityType Name="Арендодатель">
+          <Key>
+            <PropertyRef Name="IDАрендодатель" />
+          </Key>
+          <Property Name="Наименование" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ПочтовыеДанные" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IDПомещения" Type="Int32" />
+          <Property Name="IDЗдания" Type="Int32" />
+          <Property Name="IDСотрудника" Type="Int32" />
+          <Property Name="IDДоговор" Type="Int32" />
+          <Property Name="IDАрендодатель" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Помещения" Relationship="Self.R_13" FromRole="Арендодатель" ToRole="Помещения" />
+          <NavigationProperty Name="Договор" Relationship="Self.R_16" FromRole="Арендодатель" ToRole="Договор" />
+          <NavigationProperty Name="Здания" Relationship="Self.R_4" FromRole="Арендодатель" ToRole="Здания" />
+          <NavigationProperty Name="Сотрудники" Relationship="Self.R_7" FromRole="Арендодатель" ToRole="Сотрудники" />
+        </EntityType>
+        <EntityType Name="Договор">
+          <Key>
+            <PropertyRef Name="IDДоговор" />
+          </Key>
+          <Property Name="IDДоговор" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ДатаВъезда" Type="DateTime" Precision="3" />
+          <Property Name="ДатаВыеда" Type="DateTime" Precision="3" />
+          <Property Name="ИнформацияПоПомещению" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Арендатор" Relationship="Self.R_15" FromRole="Договор" ToRole="Арендатор" />
+          <NavigationProperty Name="Арендодатель" Relationship="Self.R_16" FromRole="Договор" ToRole="Арендодатель" />
+        </EntityType>
+        <EntityType Name="Должности">
+          <Key>
+            <PropertyRef Name="IDДолжности" />
+          </Key>
+          <Property Name="IDДолжности" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="НаименованиеДолжности" Type="String" MaxLength="18" FixedLength="false" Unicode="false" />
+          <Property Name="Оклад" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Требования" Type="String" MaxLength="18" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ПослужнойСписок" Relationship="Self.R_21" FromRole="Должности" ToRole="ПослужнойСписок" />
+        </EntityType>
+        <EntityType Name="Здания">
+          <Key>
+            <PropertyRef Name="IDЗдания" />
+          </Key>
+          <Property Name="Наименование" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Этажность" Type="Int32" />
+          <Property Name="ПочтовыеДанные" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="НомерПомещения" Type="Int32" />
+          <Property Name="IDЗдания" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Арендодатель" Relationship="Self.R_4" FromRole="Здания" ToRole="Арендодатель" />
+          <NavigationProperty Name="Помещения" Relationship="Self.R_1" FromRole="Здания" ToRole="Помещения" />
+          <NavigationProperty Name="ОбщиеПомещения" Relationship="Self.R_2" FromRole="Здания" ToRole="ОбщиеПомещения" />
+        </EntityType>
+        <EntityType Name="ОбщиеПомещения">
+          <Key>
+            <PropertyRef Name="IDОбщПомещения" />
+          </Key>
+          <Property Name="НаименованиеКоридоры" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Туалеты" Type="Int32" />
+          <Property Name="Этаж" Type="Int32" />
+          <Property Name="IDЗдания" Type="Int32" />
+          <Property Name="IDОбщПомещения" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Здания" Relationship="Self.R_2" FromRole="ОбщиеПомещения" ToRole="Здания" />
+        </EntityType>
+        <EntityType Name="ПоказанияСчётчика">
+          <Key>
+            <PropertyRef Name="IDСчётчика" />
+          </Key>
+          <Property Name="Номер" Type="Int32" />
+          <Property Name="Дата" Type="DateTime" Precision="3" />
+          <Property Name="Арендодатель" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Месяц" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Год" Type="Int32" />
+          <Property Name="Сумма" Type="Int32" />
+          <Property Name="IDЭлектрооборудование" Type="Int32" />
+          <Property Name="IDСчётчика" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDСотрудника" Type="Int32" />
+          <NavigationProperty Name="Сотрудники" Relationship="Self.R_18" FromRole="ПоказанияСчётчика" ToRole="Сотрудники" />
+          <NavigationProperty Name="Электрооборудование" Relationship="Self.R_8" FromRole="ПоказанияСчётчика" ToRole="Электрооборудование" />
+        </EntityType>
+        <EntityType Name="Помещения">
+          <Key>
+            <PropertyRef Name="IDПомещения" />
+          </Key>
+          <Property Name="IDПомещения" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Площадь" Type="Int32" />
+          <Property Name="Этаж" Type="Int32" />
+          <Property Name="Номер" Type="Int32" />
+          <Property Name="IDЗдания" Type="Int32" />
+          <Property Name="IDАрендодатель" Type="Int32" />
+          <NavigationProperty Name="Арендодатель" Relationship="Self.R_13" FromRole="Помещения" ToRole="Арендодатель" />
+          <NavigationProperty Name="Здания" Relationship="Self.R_1" FromRole="Помещения" ToRole="Здания" />
+        </EntityType>
+        <EntityType Name="ПослужнойСписок">
+          <Key>
+            <PropertyRef Name="IDПослужногоСписка" />
+          </Key>
+          <Property Name="ДатаЗанятияДолжности" Type="DateTime" Precision="3" />
+          <Property Name="КраткаяХарактеристика" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="IDПослужногоСписка" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDДолжности" Type="Int32" />
+          <Property Name="IDСотрудника" Type="Int32" />
+          <NavigationProperty Name="Должности" Relationship="Self.R_21" FromRole="ПослужнойСписок" ToRole="Должности" />
+          <NavigationProperty Name="Сотрудники" Relationship="Self.R_19" FromRole="ПослужнойСписок" ToRole="Сотрудники" />
+        </EntityType>
+        <EntityType Name="Сотрудники">
+          <Key>
+            <PropertyRef Name="IDСотрудника" />
+          </Key>
+          <Property Name="Фамилия" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Имя" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Отчество" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Фото" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ДатаРождения" Type="DateTime" Precision="3" />
+          <Property Name="Пол" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Адрес" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Телефон" Type="Int32" />
+          <Property Name="Образование" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IDСотрудника" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ПаспортныеДанные" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Арендодатель" Relationship="Self.R_7" FromRole="Сотрудники" ToRole="Арендодатель" />
+          <NavigationProperty Name="ПоказанияСчётчика" Relationship="Self.R_18" FromRole="Сотрудники" ToRole="ПоказанияСчётчика" />
+          <NavigationProperty Name="ПослужнойСписок" Relationship="Self.R_19" FromRole="Сотрудники" ToRole="ПослужнойСписок" />
+        </EntityType>
+        <EntityType Name="Электрооборудование">
+          <Key>
+            <PropertyRef Name="IDЭлектрооборудование" />
+          </Key>
+          <Property Name="Наименование" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Количество" Type="Int32" />
+          <Property Name="СуточноеВремяРаботы" Type="Int32" />
+          <Property Name="IDЭлектрооборудование" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="ПоказанияСчётчика" Relationship="Self.R_8" FromRole="Электрооборудование" ToRole="ПоказанияСчётчика" />
+        </EntityType>
+        <Association Name="R_15">
+          <End Role="Договор" Type="Self.Договор" Multiplicity="0..1" />
+          <End Role="Арендатор" Type="Self.Арендатор" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Договор">
+              <PropertyRef Name="IDДоговор" />
+            </Principal>
+            <Dependent Role="Арендатор">
+              <PropertyRef Name="IDДоговор" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_13">
+          <End Role="Арендодатель" Type="Self.Арендодатель" Multiplicity="0..1" />
+          <End Role="Помещения" Type="Self.Помещения" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Арендодатель">
+              <PropertyRef Name="IDАрендодатель" />
+            </Principal>
+            <Dependent Role="Помещения">
+              <PropertyRef Name="IDАрендодатель" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_16">
+          <End Role="Договор" Type="Self.Договор" Multiplicity="0..1" />
+          <End Role="Арендодатель" Type="Self.Арендодатель" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Договор">
+              <PropertyRef Name="IDДоговор" />
+            </Principal>
+            <Dependent Role="Арендодатель">
+              <PropertyRef Name="IDДоговор" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_4">
+          <End Role="Здания" Type="Self.Здания" Multiplicity="0..1" />
+          <End Role="Арендодатель" Type="Self.Арендодатель" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Здания">
+              <PropertyRef Name="IDЗдания" />
+            </Principal>
+            <Dependent Role="Арендодатель">
+              <PropertyRef Name="IDЗдания" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_7">
+          <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="0..1" />
+          <End Role="Арендодатель" Type="Self.Арендодатель" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сотрудники">
+              <PropertyRef Name="IDСотрудника" />
+            </Principal>
+            <Dependent Role="Арендодатель">
+              <PropertyRef Name="IDСотрудника" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_21">
+          <End Role="Должности" Type="Self.Должности" Multiplicity="0..1" />
+          <End Role="ПослужнойСписок" Type="Self.ПослужнойСписок" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Должности">
+              <PropertyRef Name="IDДолжности" />
+            </Principal>
+            <Dependent Role="ПослужнойСписок">
+              <PropertyRef Name="IDДолжности" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_1">
+          <End Role="Здания" Type="Self.Здания" Multiplicity="0..1" />
+          <End Role="Помещения" Type="Self.Помещения" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Здания">
+              <PropertyRef Name="IDЗдания" />
+            </Principal>
+            <Dependent Role="Помещения">
+              <PropertyRef Name="IDЗдания" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_2">
+          <End Role="Здания" Type="Self.Здания" Multiplicity="0..1" />
+          <End Role="ОбщиеПомещения" Type="Self.ОбщиеПомещения" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Здания">
+              <PropertyRef Name="IDЗдания" />
+            </Principal>
+            <Dependent Role="ОбщиеПомещения">
+              <PropertyRef Name="IDЗдания" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_18">
+          <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="0..1" />
+          <End Role="ПоказанияСчётчика" Type="Self.ПоказанияСчётчика" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сотрудники">
+              <PropertyRef Name="IDСотрудника" />
+            </Principal>
+            <Dependent Role="ПоказанияСчётчика">
+              <PropertyRef Name="IDСотрудника" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_8">
+          <End Role="Электрооборудование" Type="Self.Электрооборудование" Multiplicity="0..1" />
+          <End Role="ПоказанияСчётчика" Type="Self.ПоказанияСчётчика" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Электрооборудование">
+              <PropertyRef Name="IDЭлектрооборудование" />
+            </Principal>
+            <Dependent Role="ПоказанияСчётчика">
+              <PropertyRef Name="IDЭлектрооборудование" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_19">
+          <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="0..1" />
+          <End Role="ПослужнойСписок" Type="Self.ПослужнойСписок" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сотрудники">
+              <PropertyRef Name="IDСотрудника" />
+            </Principal>
+            <Dependent Role="ПослужнойСписок">
+              <PropertyRef Name="IDСотрудника" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="КПEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Арендатор" EntityType="Self.Арендатор" />
+          <EntitySet Name="Арендодатель" EntityType="Self.Арендодатель" />
+          <EntitySet Name="Договор" EntityType="Self.Договор" />
+          <EntitySet Name="Должности" EntityType="Self.Должности" />
+          <EntitySet Name="Здания" EntityType="Self.Здания" />
+          <EntitySet Name="ОбщиеПомещения" EntityType="Self.ОбщиеПомещения" />
+          <EntitySet Name="ПоказанияСчётчика" EntityType="Self.ПоказанияСчётчика" />
+          <EntitySet Name="Помещения" EntityType="Self.Помещения" />
+          <EntitySet Name="ПослужнойСписок" EntityType="Self.ПослужнойСписок" />
+          <EntitySet Name="Сотрудники" EntityType="Self.Сотрудники" />
+          <EntitySet Name="Электрооборудование" EntityType="Self.Электрооборудование" />
+          <AssociationSet Name="R_15" Association="Self.R_15">
+            <End Role="Договор" EntitySet="Договор" />
+            <End Role="Арендатор" EntitySet="Арендатор" />
+          </AssociationSet>
+          <AssociationSet Name="R_13" Association="Self.R_13">
+            <End Role="Арендодатель" EntitySet="Арендодатель" />
+            <End Role="Помещения" EntitySet="Помещения" />
+          </AssociationSet>
+          <AssociationSet Name="R_16" Association="Self.R_16">
+            <End Role="Договор" EntitySet="Договор" />
+            <End Role="Арендодатель" EntitySet="Арендодатель" />
+          </AssociationSet>
+          <AssociationSet Name="R_4" Association="Self.R_4">
+            <End Role="Здания" EntitySet="Здания" />
+            <End Role="Арендодатель" EntitySet="Арендодатель" />
+          </AssociationSet>
+          <AssociationSet Name="R_7" Association="Self.R_7">
+            <End Role="Сотрудники" EntitySet="Сотрудники" />
+            <End Role="Арендодатель" EntitySet="Арендодатель" />
+          </AssociationSet>
+          <AssociationSet Name="R_21" Association="Self.R_21">
+            <End Role="Должности" EntitySet="Должности" />
+            <End Role="ПослужнойСписок" EntitySet="ПослужнойСписок" />
+          </AssociationSet>
+          <AssociationSet Name="R_1" Association="Self.R_1">
+            <End Role="Здания" EntitySet="Здания" />
+            <End Role="Помещения" EntitySet="Помещения" />
+          </AssociationSet>
+          <AssociationSet Name="R_2" Association="Self.R_2">
+            <End Role="Здания" EntitySet="Здания" />
+            <End Role="ОбщиеПомещения" EntitySet="ОбщиеПомещения" />
+          </AssociationSet>
+          <AssociationSet Name="R_18" Association="Self.R_18">
+            <End Role="Сотрудники" EntitySet="Сотрудники" />
+            <End Role="ПоказанияСчётчика" EntitySet="ПоказанияСчётчика" />
+          </AssociationSet>
+          <AssociationSet Name="R_8" Association="Self.R_8">
+            <End Role="Электрооборудование" EntitySet="Электрооборудование" />
+            <End Role="ПоказанияСчётчика" EntitySet="ПоказанияСчётчика" />
+          </AssociationSet>
+          <AssociationSet Name="R_19" Association="Self.R_19">
+            <End Role="Сотрудники" EntitySet="Сотрудники" />
+            <End Role="ПослужнойСписок" EntitySet="ПослужнойСписок" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище КПModelContainer" CdmEntityContainer="КПEntities">
+          <EntitySetMapping Name="Арендатор">
+            <EntityTypeMapping TypeName="КПModel.Арендатор">
+              <MappingFragment StoreEntitySet="Арендатор">
+                <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+                <ScalarProperty Name="Имя" ColumnName="Имя" />
+                <ScalarProperty Name="Отчество" ColumnName="Отчество" />
+                <ScalarProperty Name="ПаспортныеДанные" ColumnName="ПаспортныеДанные" />
+                <ScalarProperty Name="IDДоговор" ColumnName="IDДоговор" />
+                <ScalarProperty Name="IDАрендатор" ColumnName="IDАрендатор" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Арендодатель">
+            <EntityTypeMapping TypeName="КПModel.Арендодатель">
+              <MappingFragment StoreEntitySet="Арендодатель">
+                <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+                <ScalarProperty Name="ПочтовыеДанные" ColumnName="ПочтовыеДанные" />
+                <ScalarProperty Name="IDПомещения" ColumnName="IDПомещения" />
+                <ScalarProperty Name="IDЗдания" ColumnName="IDЗдания" />
+                <ScalarProperty Name="IDСотрудника" ColumnName="IDСотрудника" />
+                <ScalarProperty Name="IDДоговор" ColumnName="IDДоговор" />
+                <ScalarProperty Name="IDАрендодатель" ColumnName="IDАрендодатель" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Договор">
+            <EntityTypeMapping TypeName="КПModel.Договор">
+              <MappingFragment StoreEntitySet="Договор">
+                <ScalarProperty Name="IDДоговор" ColumnName="IDДоговор" />
+                <ScalarProperty Name="ДатаВъезда" ColumnName="ДатаВъезда" />
+                <ScalarProperty Name="ДатаВыеда" ColumnName="ДатаВыеда" />
+                <ScalarProperty Name="ИнформацияПоПомещению" ColumnName="ИнформацияПоПомещению" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Должности">
+            <EntityTypeMapping TypeName="КПModel.Должности">
+              <MappingFragment StoreEntitySet="Должности">
+                <ScalarProperty Name="IDДолжности" ColumnName="IDДолжности" />
+                <ScalarProperty Name="НаименованиеДолжности" ColumnName="НаименованиеДолжности" />
+                <ScalarProperty Name="Оклад" ColumnName="Оклад" />
+                <ScalarProperty Name="Требования" ColumnName="Требования" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Здания">
+            <EntityTypeMapping TypeName="КПModel.Здания">
+              <MappingFragment StoreEntitySet="Здания">
+                <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+                <ScalarProperty Name="Этажность" ColumnName="Этажность" />
+                <ScalarProperty Name="ПочтовыеДанные" ColumnName="ПочтовыеДанные" />
+                <ScalarProperty Name="НомерПомещения" ColumnName="НомерПомещения" />
+                <ScalarProperty Name="IDЗдания" ColumnName="IDЗдания" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ОбщиеПомещения">
+            <EntityTypeMapping TypeName="КПModel.ОбщиеПомещения">
+              <MappingFragment StoreEntitySet="ОбщиеПомещения">
+                <ScalarProperty Name="НаименованиеКоридоры" ColumnName="НаименованиеКоридоры" />
+                <ScalarProperty Name="Туалеты" ColumnName="Туалеты" />
+                <ScalarProperty Name="Этаж" ColumnName="Этаж" />
+                <ScalarProperty Name="IDЗдания" ColumnName="IDЗдания" />
+                <ScalarProperty Name="IDОбщПомещения" ColumnName="IDОбщПомещения" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ПоказанияСчётчика">
+            <EntityTypeMapping TypeName="КПModel.ПоказанияСчётчика">
+              <MappingFragment StoreEntitySet="ПоказанияСчётчика">
+                <ScalarProperty Name="Номер" ColumnName="Номер" />
+                <ScalarProperty Name="Дата" ColumnName="Дата" />
+                <ScalarProperty Name="Арендодатель" ColumnName="Арендодатель" />
+                <ScalarProperty Name="Месяц" ColumnName="Месяц" />
+                <ScalarProperty Name="Год" ColumnName="Год" />
+                <ScalarProperty Name="Сумма" ColumnName="Сумма" />
+                <ScalarProperty Name="IDЭлектрооборудование" ColumnName="IDЭлектрооборудование" />
+                <ScalarProperty Name="IDСчётчика" ColumnName="IDСчётчика" />
+                <ScalarProperty Name="IDСотрудника" ColumnName="IDСотрудника" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Помещения">
+            <EntityTypeMapping TypeName="КПModel.Помещения">
+              <MappingFragment StoreEntitySet="Помещения">
+                <ScalarProperty Name="IDПомещения" ColumnName="IDПомещения" />
+                <ScalarProperty Name="Площадь" ColumnName="Площадь" />
+                <ScalarProperty Name="Этаж" ColumnName="Этаж" />
+                <ScalarProperty Name="Номер" ColumnName="Номер" />
+                <ScalarProperty Name="IDЗдания" ColumnName="IDЗдания" />
+                <ScalarProperty Name="IDАрендодатель" ColumnName="IDАрендодатель" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ПослужнойСписок">
+            <EntityTypeMapping TypeName="КПModel.ПослужнойСписок">
+              <MappingFragment StoreEntitySet="ПослужнойСписок">
+                <ScalarProperty Name="ДатаЗанятияДолжности" ColumnName="ДатаЗанятияДолжности" />
+                <ScalarProperty Name="КраткаяХарактеристика" ColumnName="КраткаяХарактеристика" />
+                <ScalarProperty Name="IDПослужногоСписка" ColumnName="IDПослужногоСписка" />
+                <ScalarProperty Name="IDДолжности" ColumnName="IDДолжности" />
+                <ScalarProperty Name="IDСотрудника" ColumnName="IDСотрудника" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Сотрудники">
+            <EntityTypeMapping TypeName="КПModel.Сотрудники">
+              <MappingFragment StoreEntitySet="Сотрудники">
+                <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+                <ScalarProperty Name="Имя" ColumnName="Имя" />
+                <ScalarProperty Name="Отчество" ColumnName="Отчество" />
+                <ScalarProperty Name="Фото" ColumnName="Фото" />
+                <ScalarProperty Name="ДатаРождения" ColumnName="ДатаРождения" />
+                <ScalarProperty Name="Пол" ColumnName="Пол" />
+                <ScalarProperty Name="Адрес" ColumnName="Адрес" />
+                <ScalarProperty Name="Телефон" ColumnName="Телефон" />
+                <ScalarProperty Name="Образование" ColumnName="Образование" />
+                <ScalarProperty Name="IDСотрудника" ColumnName="IDСотрудника" />
+                <ScalarProperty Name="ПаспортныеДанные" ColumnName="ПаспортныеДанные" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Электрооборудование">
+            <EntityTypeMapping TypeName="КПModel.Электрооборудование">
+              <MappingFragment StoreEntitySet="Электрооборудование">
+                <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+                <ScalarProperty Name="Количество" ColumnName="Количество" />
+                <ScalarProperty Name="СуточноеВремяРаботы" ColumnName="СуточноеВремяРаботы" />
+                <ScalarProperty Name="IDЭлектрооборудование" ColumnName="IDЭлектрооборудование" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

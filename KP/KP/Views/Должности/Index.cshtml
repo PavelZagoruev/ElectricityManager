@@ -1,0 +1,61 @@
+﻿@using PagedList.Mvc;
+
+@model PagedList.IPagedList<KP.Models.Должности>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@using (Html.BeginForm("Index", "Должности", FormMethod.Get))
+{
+    <fieldset>
+        Должность: @Html.TextBox("family", "")
+        <input type="submit" value="Найти" />
+    </fieldset>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            НаименованиеДолжности
+        </th>
+        <th>
+            Оклад
+        </th>
+        <th>
+            Требования
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.НаименованиеДолжности)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Оклад)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Требования)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IDДолжности }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IDДолжности }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IDДолжности })
+        </td>
+    </tr>
+}
+
+</table>
+
+Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))

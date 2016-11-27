@@ -1,0 +1,103 @@
+﻿@using PagedList.Mvc;
+
+@model PagedList.IPagedList<KP.Models.Сотрудники>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@using (Html.BeginForm("Index", "Сотрудники", FormMethod.Get))
+{
+    <fieldset>
+        Фамилия сотрудника: @Html.TextBox("family", "")
+        <input type="submit" value="Найти" />
+    </fieldset>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            Фамилия
+        </th>
+        <th>
+            Имя
+        </th>
+        <th>
+            Отчество
+        </th>
+        <th>
+            Фото
+        </th>
+        <th>
+            ДатаРождения
+        </th>
+        <th>
+            Пол
+        </th>
+        <th>
+            Адрес
+        </th>
+        <th>
+            Телефон
+        </th>
+        <th>
+            Образование
+        </th>
+        <th>
+            ПаспортныеДанные
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Фамилия)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Имя)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Отчество)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Фото)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ДатаРождения)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Пол)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Адрес)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Телефон)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Образование)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ПаспортныеДанные)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IDСотрудника }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IDСотрудника }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IDСотрудника })
+        </td>
+    </tr>
+}
+
+</table>
+
+Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))

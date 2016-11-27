@@ -1,0 +1,43 @@
+﻿@model KP.Models.Договор
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Договор</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ДатаВъезда)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ДатаВъезда)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ДатаВыеда)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ДатаВыеда)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ИнформацияПоПомещению)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ИнформацияПоПомещению)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDДоговор }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

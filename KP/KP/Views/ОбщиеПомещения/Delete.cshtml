@@ -1,0 +1,57 @@
+﻿@model KP.Models.ОбщиеПомещения
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>ОбщиеПомещения</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.НаименованиеКоридоры)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.НаименованиеКоридоры)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Туалеты)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Туалеты)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Этаж)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Этаж)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Здания.Наименование)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Здания.Наименование)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

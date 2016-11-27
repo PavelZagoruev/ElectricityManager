@@ -1,0 +1,73 @@
+﻿@using PagedList.Mvc;
+
+@model PagedList.IPagedList<KP.Models.Помещения>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@using (Html.BeginForm("Index", "ПоказанияСчётчика", FormMethod.Get))
+{
+    <fieldset>
+        Этаж: @Html.TextBox("numm", "")
+        <input type="submit" value="Найти" />
+    </fieldset>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            Площадь
+        </th>
+        <th>
+            Этаж
+        </th>
+        <th>
+            Номер
+        </th>
+        <th>
+            Арендодатель.Наименование
+        </th>
+        <th>
+            Здания.Наименование
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Площадь)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Этаж)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Номер)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Арендодатель.Наименование)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Здания.Наименование)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IDПомещения }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IDПомещения }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IDПомещения })
+        </td>
+    </tr>
+}
+
+</table>
+
+Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))

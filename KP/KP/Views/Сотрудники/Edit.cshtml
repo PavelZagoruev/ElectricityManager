@@ -1,0 +1,115 @@
+﻿@model KP.Models.Сотрудники
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Сотрудники</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        <div class="form-group">
+            @Html.LabelFor(model => model.Фамилия, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Фамилия)
+                @Html.ValidationMessageFor(model => model.Фамилия)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Имя, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Имя)
+                @Html.ValidationMessageFor(model => model.Имя)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Отчество, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Отчество)
+                @Html.ValidationMessageFor(model => model.Отчество)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Фото, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Фото)
+                @Html.ValidationMessageFor(model => model.Фото)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ДатаРождения, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ДатаРождения)
+                @Html.ValidationMessageFor(model => model.ДатаРождения)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Пол, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Пол)
+                @Html.ValidationMessageFor(model => model.Пол)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Адрес, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Адрес)
+                @Html.ValidationMessageFor(model => model.Адрес)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Телефон, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Телефон)
+                @Html.ValidationMessageFor(model => model.Телефон)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Образование, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Образование)
+                @Html.ValidationMessageFor(model => model.Образование)
+            </div>
+        </div>
+
+        @Html.HiddenFor(model => model.IDСотрудника)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ПаспортныеДанные, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ПаспортныеДанные)
+                @Html.ValidationMessageFor(model => model.ПаспортныеДанные)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

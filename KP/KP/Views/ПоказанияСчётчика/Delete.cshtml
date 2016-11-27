@@ -1,0 +1,89 @@
+﻿@model KP.Models.ПоказанияСчётчика
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>ПоказанияСчётчика</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Номер)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Номер)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Дата)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Дата)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Арендодатель)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Арендодатель)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Месяц)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Месяц)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Год)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Год)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Сумма)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Сумма)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Сотрудники.Фамилия)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Сотрудники.Фамилия)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Электрооборудование.Наименование)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Электрооборудование.Наименование)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

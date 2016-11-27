@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d7ee1ddcbb2b42f7b361b02d15de52e3" Name="Diagram1">
+        <EntityTypeShape EntityType="КПModel.Арендатор" Width="1.5" PointX="3" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="КПModel.Арендодатель" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="КПModel.Договор" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="КПModel.Должности" Width="1.5" PointX="3.75" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="КПModel.Здания" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="КПModel.ОбщиеПомещения" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="КПModel.ПоказанияСчётчика" Width="1.5" PointX="3" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="КПModel.Помещения" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="КПModel.ПослужнойСписок" Width="1.5" PointX="6" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="КПModel.Сотрудники" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="КПModel.Электрооборудование" Width="1.5" PointX="0.75" PointY="12.375" IsExpanded="true" />
+        <AssociationConnector Association="КПModel.R_15" ManuallyRouted="false" />
+        <AssociationConnector Association="КПModel.R_13" ManuallyRouted="false" />
+        <AssociationConnector Association="КПModel.R_16" ManuallyRouted="false" />
+        <AssociationConnector Association="КПModel.R_4" ManuallyRouted="false" />
+        <AssociationConnector Association="КПModel.R_7" ManuallyRouted="false" />
+        <AssociationConnector Association="КПModel.R_21" ManuallyRouted="false" />
+        <AssociationConnector Association="КПModel.R_1" ManuallyRouted="false" />
+        <AssociationConnector Association="КПModel.R_2" ManuallyRouted="false" />
+        <AssociationConnector Association="КПModel.R_18" ManuallyRouted="false" />
+        <AssociationConnector Association="КПModel.R_8" ManuallyRouted="false" />
+        <AssociationConnector Association="КПModel.R_19" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

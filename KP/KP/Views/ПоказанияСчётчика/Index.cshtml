@@ -1,0 +1,91 @@
+﻿@using PagedList.Mvc;
+
+@model PagedList.IPagedList<KP.Models.ПоказанияСчётчика>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@using (Html.BeginForm("Index", "ПоказанияСчётчика", FormMethod.Get))
+{
+    <fieldset>
+        Номер: @Html.TextBox("numm", "")
+        <input type="submit" value="Найти" />
+    </fieldset>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            Номер
+        </th>
+        <th>
+            Дата
+        </th>
+        <th>
+            Арендодатель
+        </th>
+        <th>
+            Месяц
+        </th>
+        <th>
+            Год
+        </th>
+        <th>
+            Сумма
+        </th>
+        <th>
+            Сотрудники.Фамилия
+        </th>
+        <th>
+            Электрооборудование.Наименование
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Номер)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Дата)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Арендодатель)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Месяц)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Год)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Сумма)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Сотрудники.Фамилия)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Электрооборудование.Наименование)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IDСчётчика }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IDСчётчика }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IDСчётчика })
+        </td>
+    </tr>
+}
+
+</table>
+
+Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))

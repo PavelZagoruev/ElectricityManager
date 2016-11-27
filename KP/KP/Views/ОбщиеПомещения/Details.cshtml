@@ -1,0 +1,51 @@
+﻿@model KP.Models.ОбщиеПомещения
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ОбщиеПомещения</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.НаименованиеКоридоры)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.НаименованиеКоридоры)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Туалеты)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Туалеты)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Этаж)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Этаж)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Здания.Наименование)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Здания.Наименование)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDОбщПомещения }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

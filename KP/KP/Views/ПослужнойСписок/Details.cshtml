@@ -1,0 +1,51 @@
+﻿@model KP.Models.ПослужнойСписок
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ПослужнойСписок</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ДатаЗанятияДолжности)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ДатаЗанятияДолжности)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.КраткаяХарактеристика)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.КраткаяХарактеристика)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Должности.НаименованиеДолжности)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Должности.НаименованиеДолжности)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Сотрудники.Фамилия)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Сотрудники.Фамилия)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDПослужногоСписка }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

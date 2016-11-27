@@ -1,0 +1,67 @@
+﻿@model KP.Models.Арендодатель
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Арендодатель</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Наименование)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Наименование)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ПочтовыеДанные)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ПочтовыеДанные)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IDПомещения)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDПомещения)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Договор.ИнформацияПоПомещению)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Договор.ИнформацияПоПомещению)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Здания.Наименование)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Здания.Наименование)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Сотрудники.Фамилия)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Сотрудники.Фамилия)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDАрендодатель }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

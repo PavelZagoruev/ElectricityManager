@@ -1,0 +1,61 @@
+﻿@using PagedList.Mvc;
+
+@model PagedList.IPagedList<KP.Models.Договор>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@using (Html.BeginForm("Index", "Договор", FormMethod.Get))
+{
+    <fieldset>
+        Информация по помещению: @Html.TextBox("family", "")
+        <input type="submit" value="Найти" />
+    </fieldset>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            ДатаВъезда
+        </th>
+        <th>
+            ДатаВыеда
+        </th>
+        <th>
+            ИнформацияПоПомещению
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ДатаВъезда)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ДатаВыеда)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ИнформацияПоПомещению)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IDДоговор }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IDДоговор }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IDДоговор })
+        </td>
+    </tr>
+}
+
+</table>
+
+Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))

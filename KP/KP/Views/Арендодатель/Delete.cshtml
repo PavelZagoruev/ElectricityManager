@@ -1,0 +1,73 @@
+﻿@model KP.Models.Арендодатель
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Арендодатель</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Наименование)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Наименование)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ПочтовыеДанные)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ПочтовыеДанные)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IDПомещения)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDПомещения)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Договор.ИнформацияПоПомещению)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Договор.ИнформацияПоПомещению)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Здания.Наименование)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Здания.Наименование)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Сотрудники.Фамилия)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Сотрудники.Фамилия)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
